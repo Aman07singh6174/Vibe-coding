@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkmate // Arena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="army-parade" aria-hidden="true">
+        <span class="army-label">ADVANCING UNIT // 07</span>
+        <i class="trooper trooper-1"></i><i class="trooper trooper-2"></i><i class="trooper trooper-3"></i>
+        <i class="trooper trooper-4"></i><i class="trooper trooper-5"></i><i class="trooper trooper-6"></i>
+        <span class="army-scan"></span>
+    </div>
+    <main class="app-shell">
+        <header class="topbar">
+            <div class="brand"><span class="brand-mark">✦</span><span>CHECKMATE <b>//</b> ARENA</span></div>
+            <div class="top-meta"><span class="live-dot"></span> LIVE MATCH <span class="meta-divider"></span> LOCAL
+                DUEL</div>
+        </header>
+
+        <section class="hero-copy">
+            <div>
+                <p class="eyebrow">TACTICAL BOARD / 001</p>
+                <h1>Make your move.<br><em>Break the line.</em></h1>
+            </div>
+            <p class="intro">A sharp, cinematic chess duel. Capture with intent, command the center, and leave nothing
+                but echoes on the board.</p>
+        </section>
+
+        <section class="play-options" aria-label="Game options">
+            <div class="option-group mode-group">
+                <span class="option-title">PLAY MODE</span>
+                <button class="option-button active" data-mode="two-player">2 PLAYER</button>
+                <button class="option-button" data-mode="cpu">VS CPU</button>
+            </div>
+            <div class="option-group difficulty-group is-hidden" id="difficultyOptions">
+                <span class="option-title">CPU LEVEL</span>
+                <button class="option-button active" data-level="easy">EASY</button>
+                <button class="option-button" data-level="medium">MEDIUM</button>
+                <button class="option-button" data-level="hard">HARD</button>
+            </div>
+            <div class="option-group clock-group">
+                <span class="option-title">CLOCK</span>
+                <button class="option-button active" data-clock="10">10 MIN</button>
+                <button class="option-button" data-clock="5">5 MIN</button>
+                <button class="option-button" data-clock="7">7 MIN</button>
+            </div>
+            <button class="option-button utility-button" id="flipButton">↔ FLIP BOARD</button>
+        </section>
+
+        <section class="game-layout">
+            <aside class="side-panel left-panel">
+                <div class="panel-label">MATCH STATUS</div>
+                <div class="turn-card"><span class="turn-pip"></span>
+                    <div><small>TURN</small><strong id="turnLabel">WHITE TO MOVE</strong></div>
+                </div>
+                <div class="clock-strip">
+                    <div class="clock-card active" id="whiteClock"><small>WHITE</small><strong>10:00</strong></div>
+                    <div class="clock-card" id="blackClock"><small>BLACK</small><strong>10:00</strong></div>
+                </div>
+                <div class="stat-grid">
+                    <div><span>MOVE</span><strong id="moveCount">01</strong></div>
+                    <div><span>CAPTURES</span><strong id="captureCount">00</strong></div>
+                </div>
+                <div class="panel-divider"></div>
+                <div class="panel-label">LAST ACTION</div>
+                <div class="last-action" id="lastAction">The board is yours.</div>
+                <button class="reset-button" id="resetButton"><span>↻</span> RESET BOARD</button>
+            </aside>
+
+            <div class="board-wrap">
+                <div class="board-frame">
+                    <div class="rank-labels">
+                        <span>8</span><span>7</span><span>6</span><span>5</span><span>4</span><span>3</span><span>2</span><span>1</span>
+                    </div>
+                    <div class="chess-board" id="board" aria-label="Chess board"></div>
+                    <div class="file-labels">
+                        <span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span>
+                    </div>
+                </div>
+                <div class="board-caption"><span>WHITE ARMY</span><span class="caption-line"></span><span>BLACK
+                        ARMY</span></div>
+            </div>
+
+            <aside class="side-panel right-panel">
+                <div class="panel-label">COMBAT LOG</div>
+                <div class="move-log" id="moveLog">
+                    <div class="empty-log">Make a move to begin<br>the combat log.</div>
+                </div>
+                <div class="legend"><span class="legend-swatch capture-swatch"></span><span>CAPTURE IMPACT</span></div>
+            </aside>
+        </section>
+
+        <footer class="footer"><span>CHESS / STRATEGY / INSTINCT</span><span>SELECT A PIECE TO REVEAL ITS PATH</span>
+        </footer>
+    </main>
+    <div class="impact-overlay" id="impactOverlay">
+        <div class="impact-ring"></div>
+        <div class="clash-blade clash-blade-a"></div>
+        <div class="clash-blade clash-blade-b"></div>
+        <div class="impact-copy">
+            <div class="impact-word">CLASH</div>
+            <div class="impact-sub">UNIT DOWN</div>
+        </div>
+    </div>
+    <div class="winner-overlay" id="winnerOverlay" aria-hidden="true">
+        <div class="winner-modal" role="dialog" aria-modal="true" aria-labelledby="winnerTitle">
+            <span class="winner-kicker">MATCH COMPLETE</span>
+            <div class="winner-seal">✦</div>
+            <h2 id="winnerTitle">WHITE WINS</h2>
+            <p id="winnerReason">BY CHECKMATE</p>
+            <button class="winner-button" id="winnerButton">PLAY AGAIN <span>↗</span></button>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
